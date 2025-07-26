@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-// import App from './App.tsx'
-import PokemonApp from './PokemonApp.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts'
+import { BrowserRouter } from 'react-router'
+import App from './App.tsx'
 
 const container = document.getElementById('root');
 
@@ -14,8 +14,9 @@ if(container){
   root.render(
     <StrictMode>
       <Provider store={store}>
-        {/* <App /> */}
-        <PokemonApp />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
       
     </StrictMode>,

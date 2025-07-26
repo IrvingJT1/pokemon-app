@@ -1,5 +1,16 @@
+import { Link } from "react-router";
+
 interface SpritesObject{
     front_default: string;
+}
+
+interface Type{
+  name:string;
+}
+
+interface Slots{
+  slot:string,
+  type: Type;
 }
 
 interface Pokemon{
@@ -9,6 +20,7 @@ interface Pokemon{
     height: number,
     weight: number,
     sprites: SpritesObject,
+    types: Slots[],
     photo: string
 }
 
@@ -23,7 +35,7 @@ export const PokemonCard = ({pokemon}: PokemonProps) => {
         <div className="card-body">
             <h5 className="card-title">{ pokemon.name.toUpperCase() }</h5>
             <p className="card-text">Para más info, dar click en el botón </p>
-            <a href="#" className="btn btn-primary">Ir a detalle</a>
+            <Link to="/details" className="btn btn-primary" state={{ pokemon }}>Ir a detalle</Link>
         </div>
     </div>
   )

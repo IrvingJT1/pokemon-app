@@ -4,6 +4,15 @@ interface SpritesObject{
     front_default: string;
 }
 
+interface Type{
+  name:string;
+}
+
+interface Slots{
+  slot:string,
+  type: Type;
+}
+
 interface Pokemon{
     url: string
     id: number,
@@ -11,6 +20,7 @@ interface Pokemon{
     height: number,
     weight: number,
     sprites: SpritesObject,
+    types: Slots[],
     photo: string
 }
 
@@ -24,19 +34,27 @@ export const pokemonSlice = createSlice({
    initialState: {
         page: 0,
         pokemons: [] as Array<Pokemon>,
-        isLoading: false
+        isLoading: false,
    },
    reducers: {
       startLoadingPokemons: (state) => {
         state.isLoading = true;
       },
+      startLoadingFilteredPokemons: (state) => {
+        state.isLoading = true;
+        state.pokemons = [];
+      },
       setPokemons: (state, action: PayloadAction<PokemonResponse>)=>{
         state.isLoading=false;
         state.page = action.payload.page;
         state.pokemons = [...state.pokemons, ...action.payload.pokemons];
-      }
+      },
+      // setFilteredPokemons: (state, action: PayloadAction<string>)=>{
+      //   state.isLoading=false;
+      //   state.pokemons = state.pokemons.filter(( pokemon: Pokemon ) => pokemon.name.toLowerCase().includes(action.payload.toLowerCase()));
+      // }
    }
 });
 
 
-export const { startLoadingPokemons, setPokemons } = pokemonSlice.actions;
+export const { startLoadingPokemons, setPokemons, startLoadingFilteredPokemons } = pokemonSlice.actions;

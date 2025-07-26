@@ -1,24 +1,39 @@
 import './index.css'
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "./store/slices/pokemon";
+import { getFilteredPokemons, getPokemons } from "./store/slices/pokemon";
 import type { RootState } from "./store/store";
 import { PokemonCard } from './components/PokemonCard';
 
 
 const PokemonApp = () => {
-    
-  const hasFetched = useRef(false);
+
+  const hasFetched = useRef( localStorage.getItem('hasFetched')? true : false );
   const dispatch = useDispatch();
   const { isLoading, pokemons=[], page } = useSelector( (state:RootState) => state.pokemons)
+  
 
   useEffect(() => {
+
+    const handleRefresh= () => {
+      localStorage.removeItem('hasFetched');
+    }
+
+    window.addEventListener('beforeunload', handleRefresh);
 
     if(!hasFetched.current)
     {
         dispatch( getPokemons() );
+
         hasFetched.current = true;
+
+        localStorage.setItem('hasFetched', 'true');
     }
+
+  return () => 
+  {
+    window.removeEventListener('beforeunload', handleRefresh);
+  };
 
   }, [dispatch]);
   
@@ -28,10 +43,9 @@ const PokemonApp = () => {
       const windowHeight = window.innerHeight;
       const fullHeight = document.body.scrollHeight;
 
-      // Carga más si estás cerca del fondo (300px antes de llegar)
+      
       if (scrollTop + windowHeight >= fullHeight - 300 && !isLoading && page>0) {
-        console.log('Effect secunario')
-        dispatch(getPokemons(page)); // pasa el número de página actual
+        dispatch(getPokemons(page)); 
       }
     };
 
@@ -39,14 +53,28 @@ const PokemonApp = () => {
     return () => window.removeEventListener('scroll', handleScroll);
 
   },[dispatch, isLoading, page]);
-//   const infiniteScroll = (e) => {
 
-//   }
+
+  const handleInputChange = (e:InputEvent) =>{
+    
+    const searchParam = e.target.value;
+
+    if(e.key === 'Enter')
+    {
+      console.log('Entra aqui')
+      dispatch(getFilteredPokemons(searchParam));
+    }
+
+    console.log(pokemons)
+
+  }
 
   return (
-    <>
+    <div className='container'>
         <h1>PokemonApp</h1>
         <hr />
+
+        <input className="w-25 mb-2 ms-2" type="text" placeholder='Busqueda de pokemon' onKeyDown={(e) => handleInputChange(e)}/>
 
         <span>
             {isLoading ? 'Loading...':''}
@@ -63,7 +91,7 @@ const PokemonApp = () => {
             }
             </div>
         </div>
-    </>
+    </div>
 )
 }
 

@@ -1,7 +1,9 @@
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from './store/store';
-import { increment, decrement, incrementByAmount } from './store/slices/counter';
+import { Route, Routes } from 'react-router';
+import PokemonApp from './PokemonApp';
+import { PokeDetails } from './components/PokeDetails';
 
 
 function App() {
@@ -11,22 +13,10 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">    Hello world!  </h1>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          count is {count}
-        </p>
-        <button onClick={() => dispatch(increment())}>
-          Increment
-        </button>
-        <button onClick={() => dispatch(decrement())}>
-          Decrement
-        </button>
-        <button onClick={() => dispatch(incrementByAmount(2))}>
-          Increment by 2
-        </button>
-      </div>
+      <Routes>
+        <Route path="/" element={<PokemonApp />} />
+        <Route path="details" element={<PokeDetails />}/>
+      </Routes>
       
     </>
   )

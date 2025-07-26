@@ -1,11 +1,19 @@
 import type { RootOptions } from "react-dom/client";
 import { pokemonApi } from "../../../api/pokemonApi";
 import type { AppDispatch, RootState } from "../../store";
-// import type { AppDispatch, RootState } from "../../store";
-import { setPokemons, startLoadingPokemons } from "./pokemonSlice"
+import { setPokemons, startLoadingFilteredPokemons, startLoadingPokemons } from "./pokemonSlice"
 
 interface SpritesObject{
     front_default: string;
+}
+
+interface Type{
+  name:string;
+}
+
+interface Slots{
+  slot:string,
+  type: Type;
 }
 
 interface Pokemon{
@@ -15,6 +23,7 @@ interface Pokemon{
     height: number,
     weight: number,
     sprites: SpritesObject,
+    types: Slots[],
     photo: string
 }
 
@@ -35,7 +44,7 @@ const getPokemonInfo = async(obtainedPokemons:Pokemon[]) => {
         const lastUrlPart = `${parts[2]}/${parts[3]}`; 
 
         const { data } = await pokemonApi.get(`/${lastUrlPart}`);
-        const { id, name, height, weight, sprites } = data as Pokemon;
+        const { id, name, height, weight, sprites, types } = data as Pokemon;
 
         return{
             ...pokemon,
@@ -43,7 +52,8 @@ const getPokemonInfo = async(obtainedPokemons:Pokemon[]) => {
             name, 
             height, 
             weight, 
-            photo: sprites.front_default
+            photo: sprites.front_default,
+            types
         } as Pokemon;
 
     }));
@@ -68,13 +78,6 @@ export const getPokemons = (page = 0) => {
             return;
         }
 
-        // if(page < data.results.length / 10 )
-        // {
-        //     return;
-        // }
-
-        console.log(data.results)
-
         const resp = await getPokemonInfo(data.results);
 
         dispatch( setPokemons({
@@ -91,31 +94,71 @@ export const getPokemons = (page = 0) => {
 
 }
 
-// export const getPokemonInfo = (id = 0) => {
+const getFilteredPokemonInfo = async(obtainedPokemons:Pokemon[]) => {
 
-//   return async ( dispatch: AppDispatch, getState: RootOptions ) => {
-//     dispatch( startLoadingPokemons() );
+    const resp =  await Promise.all( obtainedPokemons.map(async (pokemon: Pokemon)=>{
 
-//     try {
-//         const { data, status } = await pokemonApi.get(`/pokemon?limit=10&offset=${page*10}`);
+        const url = pokemon.url;
+        const parsed = new URL(url);
 
-//         console.log(data)
+        const parts = parsed.pathname.split('/').filter(Boolean); 
+        const lastUrlPart = `${parts[2]}/${parts[3]}`; 
 
-//         if(status !== 200)
-//         {
-//             alert('No hubo resultados')
-//         }
+        const { data } = await pokemonApi.get(`/${lastUrlPart}`);
+        const { id, name, height, weight, sprites, types } = data as Pokemon;
 
-//         dispatch( setPokemons({
-//         pokemons: data.results,
-//         page: page + 1
-//         }) );
-//     } 
-//     catch (error) 
-//     {
-//         alert('Error durante la consulta de datos')
-//     } 
+        return{
+            pokemon,
+            id,
+            name,
+            height,
+            weight,
+            photo: sprites.front_default,
+            types
+        } as unknown as Pokemon;
+
+    }));
+
+    return resp;
+}
+
+export const getFilteredPokemons = ( searchParam: string, page: number = 0 ) => {
+
+    return async ( dispatch: AppDispatch, getState: RootOptions ) => {
+    dispatch( startLoadingFilteredPokemons() );
+
+    try {
+        const { data, status } = await pokemonApi.get(`/pokemon?limit=1302`);
+
+        console.log(data)
+
+        if(status !== 200)
+        {
+            alert('No hubo resultados')
+
+            return;
+        }
+
+        const resp = await getFilteredPokemonInfo(data.results);
+
+        console.log(searchParam)
+
+        const filteredResp = resp.filter((pokemon: Pokemon)=> pokemon.name.toLowerCase().includes(searchParam));
+
+        console.log(filteredResp)
+
+        dispatch( setPokemons({
+            page: page,
+            pokemons: filteredResp,
+        }) );
+    } 
+    catch (error) 
+    {
+        alert('Error durante la consulta de datos')
+    } 
         
-//   }
+  }
 
-// }
+}
+
+
