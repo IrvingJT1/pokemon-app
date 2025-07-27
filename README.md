@@ -30,3 +30,16 @@ Para regresar a la pantalla principal solo se tendrá que dar click en el botón
 ## La pantalla principal tambien dispone de un buscador el cual recibirá el text para buscar el pokemon cuyo nombre contenga los caracteres del cuadro de texto
 Durante la carga deberá aparecer una animación que indica al usuario que se está realizando la búsqueda pertinente.
 En caso de encontrar coincidencias se mostrarán la serie de tarjetas con las coincidencias encontradas, en caso contrario un texto que indique que no se encontraron resultados.
+
+Paquetes y versiones empleados
+
+"@reduxjs/toolkit": "^2.8.2",
+"@tailwindcss/vite": "^4.1.11",
+"axios": "^1.11.0",
+"bootstrap": "^5.3.7",
+"react": "^19.1.0",
+"react-dom": "^19.1.0",
+"react-redux": "^9.2.0",
+"react-router": "^7.7.1",
+"redux-thunk": "^3.1.0",
+"tailwindcss": "^4.1.11"
