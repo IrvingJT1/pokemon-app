@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router';
+import noImage from '../assets/descarga.jpeg';
 
 export const PokeDetails = () => {
 
@@ -13,7 +14,7 @@ export const PokeDetails = () => {
             <h1>PokemonApp</h1>
             <hr />
             <div className="card bg-dark text-white border-white w-25 mt-4 position-absolute top-50 start-50 translate-middle">
-                <img src={pokemon.photo} className="card-img-top" alt={pokemon.name}/>
+                <img src={pokemon.photo? pokemon.photo : noImage } className="card-img-top" alt={pokemon.name}/>
                 <div className="card-body">
                     <h5 className="card-title">{pokemon.name.toUpperCase()}</h5>
                     <p className="card-text">Se muestra a continuación información del pokemon</p>
