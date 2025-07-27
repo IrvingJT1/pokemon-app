@@ -7,7 +7,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-##Para ejecutar el sitio se debe descargar el código relacionado y a continuación ejecutar:
+## Para ejecutar el sitio se debe descargar el código relacionado y a continuación ejecutar:
 
 npm install
 
