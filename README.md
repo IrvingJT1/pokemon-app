@@ -33,13 +33,13 @@ En caso de encontrar coincidencias se mostrarán la serie de tarjetas con las co
 
 Paquetes y versiones empleados
 
-"@reduxjs/toolkit": "^2.8.2",
-"@tailwindcss/vite": "^4.1.11",
-"axios": "^1.11.0",
-"bootstrap": "^5.3.7",
-"react": "^19.1.0",
-"react-dom": "^19.1.0",
-"react-redux": "^9.2.0",
-"react-router": "^7.7.1",
-"redux-thunk": "^3.1.0",
+"@reduxjs/toolkit": "^2.8.2", <br/>
+"@tailwindcss/vite": "^4.1.11", <br/>
+"axios": "^1.11.0", <br/>
+"bootstrap": "^5.3.7", <br/>
+"react": "^19.1.0", <br/>
+"react-dom": "^19.1.0", <br/>
+"react-redux": "^9.2.0", <br/>
+"react-router": "^7.7.1", <br/>
+"redux-thunk": "^3.1.0", <br/>
 "tailwindcss": "^4.1.11"
