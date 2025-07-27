@@ -7,63 +7,26 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Para ejecutar el sitio se debe descargar el código relacionado y a continuación ejecutar:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+npm install
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Una vez ejecutado se procede a ejecutar el comando: 
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## La aplicación debería mostrarse en la siguiente dirección:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+http://localhost:5173/
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Una vez iniciada la aplicación se deben de cargar los primeros 10 pokemones de la lista que vienen en pokeApi
+Si se sigue desplazando hacia abajo se podrán ir cargando los adicionales a modo de scroll infinito.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Cada pokemon de la lista vendrá con su nombre, una leyenda, una foto (en caso de no obtener foto aparecerá un no-image.png) y un botón para ir a una pantalla descriptiva para obtener más detalles.
+
+## En la pantalla descriptiva vendrá la foto, el nombre e información adicional del pokemon entre las cuales se incluyen los tipos, peso, etc.
+Para regresar a la pantalla principal solo se tendrá que dar click en el botón de navegación izquierda como se hace normalmente navegando en la web.
+
+## La pantalla principal tambien dispone de un buscador el cual recibirá el text para buscar el pokemon cuyo nombre contenga los caracteres del cuadro de texto
+Durante la carga deberá aparecer una animación que indica al usuario que se está realizando la búsqueda pertinente.
+En caso de encontrar coincidencias se mostrarán la serie de tarjetas con las coincidencias encontradas, en caso contrario un texto que indique que no se encontraron resultados.
