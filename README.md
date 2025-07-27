@@ -24,9 +24,9 @@ Si se sigue desplazando hacia abajo se podrán ir cargando los adicionales a mod
 
 Cada pokemon de la lista vendrá con su nombre, una leyenda, una foto (en caso de no obtener foto aparecerá un no-image.png) y un botón para ir a una pantalla descriptiva para obtener más detalles.
 
-# En la pantalla descriptiva vendrá la foto, el nombre e información adicional del pokemon entre las cuales se incluyen los tipos, peso, etc.
+## En la pantalla descriptiva vendrá la foto, el nombre e información adicional del pokemon entre las cuales se incluyen los tipos, peso, etc.
 Para regresar a la pantalla principal solo se tendrá que dar click en el botón de navegación izquierda como se hace normalmente navegando en la web.
 
-# La pantalla principal tambien dispone de un buscador el cual recibirá el text para buscar el pokemon cuyo nombre contenga los caracteres del cuadro de texto
+## La pantalla principal tambien dispone de un buscador el cual recibirá el text para buscar el pokemon cuyo nombre contenga los caracteres del cuadro de texto
 Durante la carga deberá aparecer una animación que indica al usuario que se está realizando la búsqueda pertinente.
 En caso de encontrar coincidencias se mostrarán la serie de tarjetas con las coincidencias encontradas, en caso contrario un texto que indique que no se encontraron resultados.
