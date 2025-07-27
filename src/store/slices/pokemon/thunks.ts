@@ -2,36 +2,8 @@ import type { RootOptions } from "react-dom/client";
 import { pokemonApi } from "../../../api/pokemonApi";
 import type { AppDispatch, RootState } from "../../store";
 import { setPokemons, startLoadingFilteredPokemons, startLoadingPokemons } from "./pokemonSlice"
+import type { Pokemon } from "../../../interfaces/Pokemon";
 
-interface SpritesObject{
-    front_default: string;
-}
-
-interface Type{
-  name:string;
-}
-
-interface Slots{
-  slot:string,
-  type: Type;
-}
-
-interface Pokemon{
-    url: string
-    id: number,
-    name: string,
-    height: number,
-    weight: number,
-    sprites: SpritesObject,
-    types: Slots[],
-    photo: string
-}
-
-interface PokemonResponse{
-    results: Pokemon[];
-    page: number,
-    pokemons: Array<Pokemon> 
-}
 
 const getPokemonInfo = async(obtainedPokemons:Pokemon[]) => {
 

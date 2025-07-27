@@ -13,7 +13,7 @@ export const PokeDetails = () => {
         <div className="container">
             <h1>PokemonApp</h1>
             <hr />
-            <div className="card bg-dark text-white border-white w-25 mt-4 position-absolute top-50 start-50 translate-middle">
+            <div className="card bg-dark text-white border-white w-25 my-5 position-absolute top-50 start-50 translate-middle">
                 <img src={pokemon.photo? pokemon.photo : noImage } className="card-img-top" alt={pokemon.name}/>
                 <div className="card-body">
                     <h5 className="card-title">{pokemon.name.toUpperCase()}</h5>

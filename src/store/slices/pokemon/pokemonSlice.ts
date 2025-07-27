@@ -1,33 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-interface SpritesObject{
-    front_default: string;
-}
-
-interface Type{
-  name:string;
-}
-
-interface Slots{
-  slot:string,
-  type: Type;
-}
-
-interface Pokemon{
-    url: string
-    id: number,
-    name: string,
-    height: number,
-    weight: number,
-    sprites: SpritesObject,
-    types: Slots[],
-    photo: string
-}
-
-interface PokemonResponse{
-    page: number,
-    pokemons: Array<Pokemon> 
-}
+import type { Pokemon } from '../../../interfaces/Pokemon';
+import type { PokemonResponse } from '../../../interfaces/PokemonResponse';
 
 export const pokemonSlice = createSlice({
    name: 'pokemon',

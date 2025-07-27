@@ -1,29 +1,6 @@
 import { Link } from "react-router";
 import noImage from '../assets/descarga.jpeg';
-
-interface SpritesObject{
-    front_default: string;
-}
-
-interface Type{
-  name:string;
-}
-
-interface Slots{
-  slot:string,
-  type: Type;
-}
-
-interface Pokemon{
-    url: string
-    id: number,
-    name: string,
-    height: number,
-    weight: number,
-    sprites: SpritesObject,
-    types: Slots[],
-    photo: string
-}
+import type { Pokemon } from "../interfaces/Pokemon";
 
 interface PokemonProps{
     pokemon: Pokemon
