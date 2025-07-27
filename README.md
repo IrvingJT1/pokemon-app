@@ -34,7 +34,6 @@ En caso de encontrar coincidencias se mostrarán la serie de tarjetas con las co
 Paquetes y versiones empleados
 
 "@reduxjs/toolkit": "^2.8.2", <br/>
-"@tailwindcss/vite": "^4.1.11", <br/>
 "axios": "^1.11.0", <br/>
 "bootstrap": "^5.3.7", <br/>
 "react": "^19.1.0", <br/>
