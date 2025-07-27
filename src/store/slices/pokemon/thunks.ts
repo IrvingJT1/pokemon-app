@@ -69,8 +69,6 @@ export const getPokemons = (page = 0) => {
     try {
         const { data, status } = await pokemonApi.get(`/pokemon?limit=10&offset=${page*10}`);
 
-        console.log(data)
-
         if(status !== 200)
         {
             alert('No hubo resultados')
@@ -130,8 +128,6 @@ export const getFilteredPokemons = ( searchParam: string, page: number = 0 ) => 
     try {
         const { data, status } = await pokemonApi.get(`/pokemon?limit=1302`);
 
-        console.log(data)
-
         if(status !== 200)
         {
             alert('No hubo resultados')
@@ -141,11 +137,7 @@ export const getFilteredPokemons = ( searchParam: string, page: number = 0 ) => 
 
         const resp = await getFilteredPokemonInfo(data.results);
 
-        console.log(searchParam)
-
         const filteredResp = resp.filter((pokemon: Pokemon)=> pokemon.name.toLowerCase().includes(searchParam));
-
-        console.log(filteredResp)
 
         dispatch( setPokemons({
             page: page,

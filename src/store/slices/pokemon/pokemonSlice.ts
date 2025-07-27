@@ -49,10 +49,6 @@ export const pokemonSlice = createSlice({
         state.page = action.payload.page;
         state.pokemons = [...state.pokemons, ...action.payload.pokemons];
       },
-      // setFilteredPokemons: (state, action: PayloadAction<string>)=>{
-      //   state.isLoading=false;
-      //   state.pokemons = state.pokemons.filter(( pokemon: Pokemon ) => pokemon.name.toLowerCase().includes(action.payload.toLowerCase()));
-      // }
    }
 });
 
