@@ -106,8 +106,8 @@ export const getFilteredPokemons = ( searchParam: string, page: number = 0 ) => 
 
             return;
         }
-
-        const resp = await getFilteredPokemonInfo(data.results);
+        const filteredNames:Pokemon[] = data.results.filter((pokemon:Pokemon)=> pokemon.name.toLowerCase().includes(searchParam.toLowerCase()));
+        const resp = await getFilteredPokemonInfo(filteredNames);
 
         const filteredResp = resp.filter((pokemon: Pokemon)=> pokemon.name.toLowerCase().includes(searchParam));
 
